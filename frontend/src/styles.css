@@ -1,3 +1,17 @@
-body{font-family: Arial, sans-serif;margin:20px}
-.container{max-width:900px;margin:0 auto}
+body{font-family: Arial, sans-serif;margin:20px;background:#f5f7fb;color:#212121}
+.container{max-width:960px;margin:0 auto;padding:0 16px}
 section{margin-bottom:20px}
+.page-tabs{display:flex;gap:8px;margin:16px 0}
+.page-tabs button{border:1px solid #ccc;background:#fff;color:#333;padding:10px 16px;cursor:pointer;border-radius:6px}
+.page-tabs button.active{background:#0d6efd;color:#fff;border-color:#0d6efd}
+.admin-page{background:#fff;border:1px solid #e1e5eb;border-radius:10px;padding:20px}
+.admin-page h2{margin-top:0}
+.admin-grid{display:grid;gap:20px}
+.admin-grid section{background:#f9fbff;border:1px solid #dde4ee;border-radius:10px;padding:16px}
+.admin-grid .full-width{grid-column:1/-1}
+.admin-page label{display:block;margin-bottom:10px;font-size:.95rem}
+.admin-page input,
+.admin-page select{width:100%;padding:8px 10px;margin-top:6px;border:1px solid #cbd5e1;border-radius:6px}
+.admin-page button{margin-top:10px;padding:10px 14px;border:none;border-radius:6px;background:#0d6efd;color:#fff;cursor:pointer}
+.admin-page .message{margin-bottom:12px;padding:12px;border-radius:8px;background:#e3f2fd;color:#0b4f9a}
+.hint{font-size:.95rem;color:#5f6c7b}

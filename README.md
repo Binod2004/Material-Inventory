@@ -34,4 +34,8 @@ API endpoints (examples)
 - GET /api/stock
 - POST /api/stock
 
+Frontend features
+- Dashboard view for materials, suppliers, and stock
+- Admin page for adding materials, suppliers, and stock levels
+
 See the `backend` and `frontend` folders for implementation details and further instructions.
