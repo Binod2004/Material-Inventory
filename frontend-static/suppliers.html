@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vizag Steel Inventory - Suppliers</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Vizag Steel PMS</div>
+        <nav>
+          <a href="index.html"><span class="dot"></span> Dashboard</a>
+          <a href="materials.html"><span class="dot"></span> Materials</a>
+          <a href="suppliers.html" class="active"><span class="dot"></span> Suppliers</a>
+          <a href="stock.html"><span class="dot"></span> Stock</a>
+          <a href="reports.html"><span class="dot"></span> Reports</a>
+        </nav>
+      </aside>
+      <div class="content-area">
+        <header class="header-bar">
+          <div class="header-title">Material Inventory Management System</div>
+          <div class="header-actions"><button type="button" onclick="logout()">Logout</button></div>
+        </header>
+        <main class="page-content">
+          <div class="page-header">
+            <h2>Supplier Management</h2>
+            <p>Add, update, or remove supplier contacts.</p>
+          </div>
+
+          <div id="suppliersNotice"></div>
+
+          <section class="form-section">
+            <form id="suppliersForm" class="form-grid">
+              <label>Supplier Name<input id="supplierName" required /></label>
+              <label>Phone<input id="supplierPhone" /></label>
+              <label>Email<input id="supplierEmail" type="email" /></label>
+              <label>Address<input id="supplierAddress" /></label>
+              <button type="submit" id="suppliersSaveButton">Add Supplier</button>
+            </form>
+          </section>
+
+          <section class="table-section">
+            <div class="table-actions"><input id="supplierSearch" type="search" placeholder="Search suppliers" /></div>
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Phone</th><th>Email</th><th>Address</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="suppliersTable"></tbody>
+            </table>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/suppliers.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vizag Steel Inventory - Stock</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Vizag Steel PMS</div>
+        <nav>
+          <a href="index.html">Dashboard</a>
+          <a href="materials.html">Materials</a>
+          <a href="suppliers.html">Suppliers</a>
+          <a href="stock.html" class="active">Stock</a>
+          <a href="reports.html">Reports</a>
+        </nav>
+      </aside>
+      <div class="content-area">
+        <header class="header-bar">
+          <div class="header-title">Material Inventory Management System</div>
+          <div class="header-actions"><a href="login.html">Logout</a></div>
+        </header>
+        <main class="page-content">
+          <div class="page-header">
+            <h2>Stock Management</h2>
+            <p>Track available stock and minimum thresholds.</p>
+          </div>
+          <div class="alert warning">
+            <strong>Alert:</strong> 2 stock items below minimum level.
+          </div>
+          <div class="form-section">
+            <form class="form-grid">
+              <label>Material<select><option selected>Welding Wire</option></select></label>
+              <label>Available Stock<input type="number" value="8" /></label>
+              <label>Minimum Stock<input type="number" value="25" /></label>
+              <button type="button">Add Stock</button>
+            </form>
+          </div>
+          <section class="table-section">
+            <div class="table-actions"><input type="search" placeholder="Search stock" /></div>
+            <table>
+              <thead>
+                <tr><th>Material</th><th>Available</th><th>Minimum</th><th>Last Updated</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr class="low-stock"><td>Welding Wire</td><td>8</td><td>25</td><td>May 30, 2026 08:50</td><td><button type="button">Edit</button> <button type="button" class="danger">Delete</button></td></tr>
+                <tr class="low-stock"><td>Fasteners</td><td>15</td><td>30</td><td>May 29, 2026 17:45</td><td><button type="button">Edit</button> <button type="button" class="danger">Delete</button></td></tr>
+                <tr><td>Steel Rod</td><td>120</td><td>40</td><td>May 30, 2026 09:10</td><td><button type="button">Edit</button> <button type="button" class="danger">Delete</button></td></tr>
+              </tbody>
+            </table>
+          </section>
+        </main>
+        <footer class="app-footer">
+          <span>Vizag Steel Plant Inventory System</span>
+          <span>© 2026 Vizag Steel Plant</span>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

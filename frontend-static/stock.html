@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vizag Steel Inventory - Stock</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Vizag Steel PMS</div>
+        <nav>
+          <a href="index.html"><span class="dot"></span> Dashboard</a>
+          <a href="materials.html"><span class="dot"></span> Materials</a>
+          <a href="suppliers.html"><span class="dot"></span> Suppliers</a>
+          <a href="stock.html" class="active"><span class="dot"></span> Stock</a>
+          <a href="reports.html"><span class="dot"></span> Reports</a>
+        </nav>
+      </aside>
+      <div class="content-area">
+        <header class="header-bar">
+          <div class="header-title">Material Inventory Management System</div>
+          <div class="header-actions"><button type="button" onclick="logout()">Logout</button></div>
+        </header>
+        <main class="page-content">
+          <div class="page-header">
+            <h2>Stock Management</h2>
+            <p>Track available stock and minimum thresholds.</p>
+          </div>
+
+          <div id="stockNotice"></div>
+
+          <section class="form-section">
+            <form id="stockForm" class="form-grid">
+              <label>Material<select id="stockMaterial" required></select></label>
+              <label>Available Stock<input id="stockAvailable" type="number" min="0" required /></label>
+              <label>Minimum Stock<input id="stockMinimum" type="number" min="0" required /></label>
+              <button type="submit" id="stockSaveButton">Add Stock</button>
+            </form>
+          </section>
+
+          <section class="table-section">
+            <div class="table-actions"><input id="stockSearch" type="search" placeholder="Search stock" /></div>
+            <table>
+              <thead>
+                <tr><th>Material</th><th>Available</th><th>Minimum</th><th>Last Updated</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="stockTable"></tbody>
+            </table>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/stock.js"></script>
+  </body>
+</html>

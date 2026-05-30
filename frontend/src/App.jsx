@@ -1,49 +1,44 @@
-import React, { useEffect, useState } from 'react'
-import api from './services/api'
-import AdminPage from './pages/AdminPage'
+import React, { useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import Sidebar from './components/Sidebar'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import LoginPage from './pages/LoginPage'
+import DashboardPage from './pages/DashboardPage'
+import MaterialsPage from './pages/MaterialsPage'
+import SuppliersPage from './pages/SuppliersPage'
+import StockPage from './pages/StockPage'
+import ReportsPage from './pages/ReportsPage'
+import NotFoundPage from './pages/NotFoundPage'
+import { authService } from './services/api'
 
-export default function App(){
-  const [materials,setMaterials] = useState([])
-  const [suppliers,setSuppliers] = useState([])
-  const [stock,setStock] = useState([])
-  const [activePage,setActivePage] = useState('dashboard')
+function PrivateRoute({ children }) {
+  return authService.isAuthenticated() ? children : <Navigate to="/login" replace />
+}
 
-  const refreshData = () => {
-    api.get('/materials').then(res=>setMaterials(res.data)).catch(()=>{})
-    api.get('/suppliers').then(res=>setSuppliers(res.data)).catch(()=>{})
-    api.get('/stock').then(res=>setStock(res.data)).catch(()=>{})
-  }
-
-  useEffect(()=>{
-    refreshData()
-  },[])
+export default function App() {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const loggedIn = authService.isAuthenticated()
 
   return (
-    <div className="container">
-      <h1>Vizag Steel Plant — Inventory</h1>
-      <nav className="page-tabs">
-        <button className={activePage === 'dashboard' ? 'active' : ''} onClick={()=>setActivePage('dashboard')}>Dashboard</button>
-        <button className={activePage === 'admin' ? 'active' : ''} onClick={()=>setActivePage('admin')}>Admin</button>
-      </nav>
-
-      {activePage === 'dashboard' ? (
-        <>
-          <section>
-            <h2>Materials</h2>
-            <ul>{materials.map(m=> <li key={m.id}>{m.code} — {m.name} ({m.unit})</li>)}</ul>
-          </section>
-          <section>
-            <h2>Suppliers</h2>
-            <ul>{suppliers.map(s=> <li key={s.id}>{s.name} — {s.contact}</li>)}</ul>
-          </section>
-          <section>
-            <h2>Stock Levels</h2>
-            <ul>{stock.map(s=> <li key={s.id}>{s.material_code} — {s.quantity} (Supplier: {s.supplier_name || 'N/A'})</li>)}</ul>
-          </section>
-        </>
-      ) : (
-        <AdminPage materials={materials} suppliers={suppliers} onRefresh={refreshData} />
-      )}
-    </div>
+    <BrowserRouter>
+      <div className={`app-shell ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+        {loggedIn && <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(prev => !prev)} />}
+        <div className="content-area">
+          {loggedIn && <Header collapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(prev => !prev)} />}
+          <Routes>
+            <Route path="/login" element={loggedIn ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+            <Route path="/materials" element={<PrivateRoute><MaterialsPage /></PrivateRoute>} />
+            <Route path="/suppliers" element={<PrivateRoute><SuppliersPage /></PrivateRoute>} />
+            <Route path="/stock" element={<PrivateRoute><StockPage /></PrivateRoute>} />
+            <Route path="/reports" element={<PrivateRoute><ReportsPage /></PrivateRoute>} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+          {loggedIn && <Footer />}
+        </div>
+      </div>
+    </BrowserRouter>
   )
 }

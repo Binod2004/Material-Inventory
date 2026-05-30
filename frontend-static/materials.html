@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vizag Steel Inventory - Materials</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Vizag Steel PMS</div>
+        <nav>
+          <a href="index.html"><span class="dot"></span> Dashboard</a>
+          <a href="materials.html" class="active"><span class="dot"></span> Materials</a>
+          <a href="suppliers.html"><span class="dot"></span> Suppliers</a>
+          <a href="stock.html"><span class="dot"></span> Stock</a>
+          <a href="reports.html"><span class="dot"></span> Reports</a>
+        </nav>
+      </aside>
+      <div class="content-area">
+        <header class="header-bar">
+          <div class="header-title">Material Inventory Management System</div>
+          <div class="header-actions"><button type="button" onclick="logout()">Logout</button></div>
+        </header>
+        <main class="page-content">
+          <div class="page-header">
+            <h2>Materials Management</h2>
+            <p>Manage material details and supplier assignments.</p>
+          </div>
+
+          <div id="materialsNotice"></div>
+
+          <section class="form-section">
+            <form id="materialsForm" class="form-grid">
+              <label>Material Name<input id="materialName" required /></label>
+              <label>Category<input id="materialCategory" /></label>
+              <label>Quantity<input id="materialQuantity" type="number" min="0" required /></label>
+              <label>Unit Price<input id="materialUnitPrice" type="number" min="0" step="0.01" required /></label>
+              <label>Supplier<select id="materialSupplier"></select></label>
+              <label>Stock Status<select id="materialStatus"><option>In stock</option><option>Low stock</option><option>Out of stock</option></select></label>
+              <button type="submit" id="materialsSaveButton">Add Material</button>
+            </form>
+          </section>
+
+          <section class="table-section">
+            <div class="table-actions"><input id="materialSearch" type="search" placeholder="Search materials" /></div>
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Category</th><th>Quantity</th><th>Unit Price</th><th>Supplier</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="materialsTable"></tbody>
+            </table>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/materials.js"></script>
+  </body>
+</html>

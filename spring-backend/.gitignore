@@ -1,0 +1,8 @@
+target/
+*.log
+*.tmp
+*.bak
+*.swp
+.idea/
+.vscode/
+*.iml
