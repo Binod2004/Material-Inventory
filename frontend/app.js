@@ -1,4 +1,9 @@
-const apiBase = '/api';
+// Determine API base URL - use environment variable or default based on hostname
+const apiBase = window.__API_BASE__ || (
+  window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:4000/api'
+    : '/api'
+);
 
 const elements = {
   apiStatus: document.getElementById('api-status'),

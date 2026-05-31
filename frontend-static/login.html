@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vizag Steel Inventory - Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="auth-page">
+      <div class="auth-card">
+        <h1>Admin Login</h1>
+        <p>Enter your credentials to access inventory dashboards and management tools.</p>
+        <form id="loginForm">
+          <label>Username<input id="username" type="text" value="admin" required /></label>
+          <label>Password<input id="password" type="password" value="admin123" required /></label>
+          <button type="submit">Login</button>
+          <div id="loginMessage"></div>
+          <p class="small-note">Use <strong>admin</strong> / <strong>admin123</strong> for a quick demo if your database includes an admin user.</p>
+        </form>
+      </div>
+    </div>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/login.js"></script>
+  </body>
+</html>

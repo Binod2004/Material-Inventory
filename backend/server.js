@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
@@ -86,3 +87,6 @@ app.use((req, res, next) => {
 });
 
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+=======
+require('./src/server');
+>>>>>>> 2cbe4a49f854f45ef57c783bbfcc2611d419a530

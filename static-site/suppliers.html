@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vizag Steel Inventory - Suppliers</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Vizag Steel PMS</div>
+        <nav>
+          <a href="index.html">Dashboard</a>
+          <a href="materials.html">Materials</a>
+          <a href="suppliers.html" class="active">Suppliers</a>
+          <a href="stock.html">Stock</a>
+          <a href="reports.html">Reports</a>
+        </nav>
+      </aside>
+      <div class="content-area">
+        <header class="header-bar">
+          <div class="header-title">Material Inventory Management System</div>
+          <div class="header-actions"><a href="login.html">Logout</a></div>
+        </header>
+        <main class="page-content">
+          <div class="page-header">
+            <h2>Supplier Management</h2>
+            <p>Add, update, or remove supplier contacts.</p>
+          </div>
+          <div class="form-section">
+            <form class="form-grid">
+              <label>Supplier Name<input value="Steel Supply Co." /></label>
+              <label>Phone<input value="+91 98765 43210" /></label>
+              <label>Email<input type="email" value="info@steelsupply.com" /></label>
+              <label>Address<input value="Sector 12, Vizag" /></label>
+              <button type="button">Add Supplier</button>
+            </form>
+          </div>
+          <section class="table-section">
+            <div class="table-actions"><input type="search" placeholder="Search suppliers" /></div>
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Phone</th><th>Email</th><th>Address</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Steel Supply Co.</td><td>+91 98765 43210</td><td>info@steelsupply.com</td><td>Sector 12, Vizag</td><td><button type="button">Edit</button> <button type="button" class="danger">Delete</button></td></tr>
+                <tr><td>Central Supplies</td><td>+91 91234 56789</td><td>contact@central.com</td><td>Industrial Zone, Vizag</td><td><button type="button">Edit</button> <button type="button" class="danger">Delete</button></td></tr>
+              </tbody>
+            </table>
+          </section>
+        </main>
+        <footer class="app-footer">
+          <span>Vizag Steel Plant Inventory System</span>
+          <span>© 2026 Vizag Steel Plant</span>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,37 +2,54 @@
 CREATE DATABASE IF NOT EXISTS vizag_inventory;
 USE vizag_inventory;
 
+CREATE TABLE IF NOT EXISTS admins (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS suppliers (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  contact VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  supplier_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  supplier_name VARCHAR(255) NOT NULL,
+  phone VARCHAR(100),
+  email VARCHAR(255),
+  address VARCHAR(500)
 );
 
 CREATE TABLE IF NOT EXISTS materials (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  code VARCHAR(50) UNIQUE NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  unit VARCHAR(50),
-  min_level INT DEFAULT 0,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  material_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  material_name VARCHAR(255) NOT NULL,
+  category VARCHAR(150),
+  quantity INT DEFAULT 0,
+  unit_price DECIMAL(12,2) DEFAULT 0,
+  supplier_id BIGINT,
+  stock_status VARCHAR(100),
+  FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
 );
 
 CREATE TABLE IF NOT EXISTS stock_levels (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  material_id INT NOT NULL,
-  supplier_id INT,
-  quantity INT DEFAULT 0,
-  min_level INT DEFAULT 0,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (material_id) REFERENCES materials(id) ON DELETE CASCADE,
-  FOREIGN KEY (supplier_id) REFERENCES suppliers(id) ON DELETE SET NULL
+  stock_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  material_id BIGINT NOT NULL,
+  available_stock INT DEFAULT 0,
+  minimum_stock INT DEFAULT 0,
+  last_updated DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (material_id) REFERENCES materials(material_id) ON DELETE CASCADE
 );
 
--- Seed sample data
-INSERT INTO suppliers (name,contact) VALUES ('Steel Supplies Pvt Ltd','+91-891-0000000') ON DUPLICATE KEY UPDATE name=name;
-INSERT INTO materials (code,name,unit,min_level) VALUES ('MS001','Mild Steel Plate','kg',1000) ON DUPLICATE KEY UPDATE name=name;
+-- Sample data
+INSERT INTO admins (username,password) VALUES ('admin','admin123')
+  ON DUPLICATE KEY UPDATE password = password;
 
--- Insert a stock record if not exists
-INSERT INTO stock_levels (material_id,supplier_id,quantity,min_level)
-SELECT m.id, s.id, 5000, m.min_level FROM materials m JOIN suppliers s LIMIT 1;
+INSERT INTO suppliers (supplier_name,phone,email,address) VALUES
+('Steel Supply Co.','+91-891-1234567','sales@steelsupply.com','Vizag Industrial Area')
+ON DUPLICATE KEY UPDATE phone=phone;
+
+INSERT INTO materials (material_name,category,quantity,unit_price,supplier_id,stock_status) VALUES
+('Mild Steel Plate','Raw Material',150,42.50,1,'In stock'),
+('Alloy Bar','Finished Stock',30,95.00,1,'Low stock')
+ON DUPLICATE KEY UPDATE material_name=material_name;
+
+INSERT INTO stock_levels (material_id,available_stock,minimum_stock,last_updated) VALUES
+(1,150,50,NOW()),
+(2,30,50,NOW())
+ON DUPLICATE KEY UPDATE available_stock=available_stock;

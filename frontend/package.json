@@ -2,7 +2,6 @@
   "name": "vizag-steel-inventory-frontend",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "info": "echo \"Static frontend served by backend. Run backend from ../backend.\""
-  }
+  "description": "Static HTML/CSS/JS frontend for Material Inventory.",
+  "license": "MIT"
 }

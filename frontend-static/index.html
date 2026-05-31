@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vizag Steel Inventory - Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">Vizag Steel PMS</div>
+        <nav>
+          <a href="index.html" class="active"><span class="dot"></span> Dashboard</a>
+          <a href="materials.html"><span class="dot"></span> Materials</a>
+          <a href="suppliers.html"><span class="dot"></span> Suppliers</a>
+          <a href="stock.html"><span class="dot"></span> Stock</a>
+          <a href="reports.html"><span class="dot"></span> Reports</a>
+        </nav>
+      </aside>
+      <div class="content-area">
+        <header class="header-bar">
+          <div class="header-title">Material Inventory Management System</div>
+          <div class="header-actions"><button type="button" onclick="logout()">Logout</button></div>
+        </header>
+        <main class="page-content">
+          <div class="page-header">
+            <h2>Dashboard</h2>
+            <p>Overview of materials, suppliers, and stock health.</p>
+          </div>
+
+          <div id="alertContainer"></div>
+
+          <div class="cards-grid">
+            <div class="card">
+              <h3>Total Materials</h3>
+              <strong id="totalMaterials">0</strong>
+            </div>
+            <div class="card">
+              <h3>Total Suppliers</h3>
+              <strong id="totalSuppliers">0</strong>
+            </div>
+            <div class="card">
+              <h3>Low Stock Items</h3>
+              <strong id="lowStockItems">0</strong>
+            </div>
+            <div class="card">
+              <h3>Available Stock</h3>
+              <strong id="availableStock">0</strong>
+            </div>
+          </div>
+
+          <section class="table-section">
+            <h3>Urgent Low Stock Items</h3>
+            <table>
+              <thead>
+                <tr><th>Material</th><th>Available</th><th>Minimum</th><th>Last Updated</th></tr>
+              </thead>
+              <tbody id="lowStockTable"></tbody>
+            </table>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/dashboard.js"></script>
+  </body>
+</html>
