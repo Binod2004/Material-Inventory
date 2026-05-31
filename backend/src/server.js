@@ -35,4 +35,8 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`Node backend running on http://localhost:${port}`));
+if (!process.env.VERCEL) {
+  app.listen(port, () => console.log(`Node backend running on http://localhost:${port}`));
+}
+
+module.exports = app;

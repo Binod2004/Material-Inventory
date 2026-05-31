@@ -1,4 +1,16 @@
 {
-  "buildCommand": "echo 'Static site'",
-  "outputDirectory": "frontend-static"
+  "version": 2,
+  "outputDirectory": "frontend-static",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/:path", "destination": "/:path.html" }
+  ]
 }
