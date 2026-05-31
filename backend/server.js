@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const db = require('./src/db');
@@ -6,6 +7,7 @@ const db = require('./src/db');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Materials
 app.get('/api/materials', async (req, res) => {
@@ -76,4 +78,11 @@ app.post('/api/stock', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ error: 'API route not found' });
+  }
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));

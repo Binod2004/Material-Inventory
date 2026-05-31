@@ -5,28 +5,25 @@ A scaffolded inventory management system tailored for Vizag Steel Plant.
 Features
 - Admin panel and inventory modules: materials, suppliers, stock levels
 - REST API backend: Node.js + Express
-- Frontend: React (Vite)
+- Frontend: static HTML, CSS, and vanilla JavaScript
 - MySQL database with schema and seed data
 
 Directory structure
-- backend/ — Node.js API
-- frontend/ — React app (Vite)
+- backend/ — Node.js API that also serves the static frontend
+- frontend/ — plain HTML/CSS/JavaScript user interface
 - db/ — SQL schema and seeds
 
 Quick start
 1. Install MySQL and create a database `vizag_inventory`.
 2. Import schema: `db/schema.sql`.
 3. Configure environment: copy `backend/.env.example` → `backend/.env` and set DB credentials.
-4. Start backend:
+4. Start backend and frontend together:
    - cd `backend`
    - `npm install`
-   - `npm run dev` (requires `nodemon`) or `npm start`
-5. Start frontend:
-   - cd `frontend`
-   - `npm install`
-   - `npm run dev`
+   - `npm start`
+5. Open `http://localhost:4000` in your browser.
 
-API endpoints (examples)
+API endpoints
 - GET /api/materials
 - POST /api/materials
 - GET /api/suppliers
@@ -35,7 +32,8 @@ API endpoints (examples)
 - POST /api/stock
 
 Frontend features
-- Dashboard view for materials, suppliers, and stock
-- Admin page for adding materials, suppliers, and stock levels
+- Dashboard showing materials, suppliers, and stock data
+- Admin console for adding materials, suppliers, and stock entries
+- Responsive UI built with pure HTML, CSS, and JavaScript
 
-See the `backend` and `frontend` folders for implementation details and further instructions.
+See `backend/server.js` for API details and `frontend/index.html` for the user interface.
